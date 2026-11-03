@@ -3,6 +3,7 @@
     "target": "ES2022",
     "module": "NodeNext",
     "outDir": "./src",
+    "rootDir": "./",
     "strict": false,
     "noImplicitAny": false,
     "strictNullChecks": false,
@@ -10,5 +11,6 @@
     "skipLibCheck": true,
     "esModuleInterop": true
   },
-  "include": ["src/**/*"]
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "src/plugins/EagProxyAAS/utils.js"]
 }
