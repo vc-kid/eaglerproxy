@@ -22,13 +22,12 @@ export const config: Config = {
         skinCachePruneInterval: 10 * 60 * 1000,
       },
     },
-    motd: true
-      ? "FORWARD" // "FORWARD" regularly polls the server for the MOTD
-      : {
-          iconURL: "motd.png", // must be a valid file path
-          l1: "yes",
-          l2: "no",
-        }, // providing an object as such will allow you to supply your own MOTD
+    // CHANGED: Removed "FORWARD" to stop background polling blocks
+    motd: {
+      iconURL: "motd.png", 
+      l1: "§aMy Eaglercraft Server",
+      l2: "§7Hosted via Render & Aternos",
+    }, 
     ratelimits: {
       lockout: 10,
       limits: {
@@ -47,8 +46,9 @@ export const config: Config = {
     },
     server: {
       host: "USER16434.aternos.me",
-      port: 25122
+      port: 25122 // IMPORTANT: Double-check your Aternos panel to ensure this hasn't changed!
     },
     tls: undefined,
   },
 };
+
