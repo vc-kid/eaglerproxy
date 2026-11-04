@@ -5,7 +5,7 @@
   "main": "launcher.js",
   "scripts": {
     "build": "yarn install",
-    "start-render": "npx ts-node src/index.ts"
+    "start": "npx tsx src/index.ts"
   },
   "author": "WorldEditAxe, q13x",
   "license": "MIT",
