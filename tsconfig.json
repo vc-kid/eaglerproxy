@@ -9,8 +9,9 @@
     "strictNullChecks": false,
     "strictPropertyInitialization": false,
     "skipLibCheck": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "noEmitOnError": false
   },
   "include": ["**/*.ts"],
-  "exclude": ["node_modules", "src/plugins/EagProxyAAS/utils.js"]
+  "exclude": ["node_modules"]
 }
