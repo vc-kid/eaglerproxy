@@ -9,10 +9,10 @@ export const config: Config = {
     bindHost: "0.0.0.0",
     bindPort: 8080,
     maxConcurrentClients: 20,
-    // set this to false if you are unable to install sharp due to either the use of a platform that does not support native modules
-    // or if you are unable to install the required dependencies. this will cause the proxy to use jimp instead of sharp, which may
-    // degrade your proxy's performance.
-    useNatives: true,
+    
+    // FIXED: Changed to false to prevent Node v24 from hanging on image libraries
+    useNatives: false, 
+    
     skinServer: {
       skinUrlWhitelist: undefined,
       cache: {
@@ -22,11 +22,11 @@ export const config: Config = {
         skinCachePruneInterval: 10 * 60 * 1000,
       },
     },
-    // CHANGED: Removed "FORWARD" to stop background polling blocks
+    // FIXED: Static MOTD setup to bypass the Aternos firewall block
     motd: {
       iconURL: "motd.png", 
       l1: "§aMy Eaglercraft Server",
-      l2: "§7Hosted via Render & Aternos",
+      l2: "§7Hosted via Render",
     }, 
     ratelimits: {
       lockout: 10,
@@ -34,7 +34,7 @@ export const config: Config = {
         http: 100,
         ws: 100,
         motd: 100,
-        skins: 1000, // adjust as necessary
+        skins: 1000, 
         skinsIp: 10000,
         connect: 100,
       },
@@ -46,9 +46,8 @@ export const config: Config = {
     },
     server: {
       host: "USER16434.aternos.me",
-      port: 25122 // IMPORTANT: Double-check your Aternos panel to ensure this hasn't changed!
+      port: 25122 // Double-check your Aternos panel to make sure this port number is currently active!
     },
     tls: undefined,
   },
 };
-
