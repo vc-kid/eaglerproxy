@@ -1,53 +1,35 @@
-// This folder contains options for both the bridge and networking adapter.
-// Environment files and .env files are available here. Set the value of any config option to process.env.<ENV name>
+import { EaglerProxyConfig } from "./src/proxy/Protocol";
 
-import { Config } from "./launcher_types.js";
-
-export const config: Config = {
-  adapter: {
-    name: "EaglerProxy",
+export const config: EaglerProxyConfig = {
+    // The IP/Host and Port of the proxy itself
     bindHost: "0.0.0.0",
     bindPort: 8080,
-    maxConcurrentClients: 20,
     
-    // FIXED: Changed to false to prevent Node v24 from hanging on image libraries
-    useNatives: false, 
+    // Max players allowed to connect to the proxy concurrently
+    maxPlayers: 20,
     
-    skinServer: {
-      skinUrlWhitelist: undefined,
-      cache: {
-        useCache: true,
-        folderName: "skinCache",
-        skinCacheLifetime: 60 * 60 * 1000,
-        skinCachePruneInterval: 10 * 60 * 1000,
-      },
-    },
-    // FIXED: Static MOTD setup to bypass the Aternos firewall block
+    // The message of the day (MOTD) displayed on the Eaglercraft multiplayer menu
     motd: {
-      iconURL: "motd.png", 
-      l1: "§aMy Eaglercraft Server",
-      l2: "§7Hosted via Render",
-    }, 
-    ratelimits: {
-      lockout: 10,
-      limits: {
-        http: 100,
-        ws: 100,
-        motd: 100,
-        skins: 1000, 
-        skinsIp: 10000,
-        connect: 100,
-      },
+        icon: "server-icon.png", // Must be in the root directory, or leave empty
+        l1: "§6§lEaglerProxy Server§r",
+        l2: "§aHosted on Render!"
     },
-    origins: {
-      allowOfflineDownloads: true,
-      originWhitelist: null,
-      originBlacklist: null,
-    },
+
+    // The BACKEND Minecraft server the proxy connects to
     server: {
-      host: "USER16434.aternos.me",
-      port: 25122 // Double-check your Aternos panel to make sure this port number is currently active!
+        host: "antelope.aternos.host",
+        port: 25122
     },
-    tls: undefined,
-  },
+
+    // Security and severe network level settings
+    security: {
+        // Rate limiting to prevent crash attempts / spams
+        maxConnectionsPerIp: 3,
+        clientTimeout: 10000
+    },
+
+    // Native performance optimizations
+    adapter: {
+        useNatives: false // Set to false for environments like Render to prevent crashes
+    }
 };
